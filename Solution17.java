@@ -17,7 +17,7 @@ import java.util.*;
  * 输出：["AAAAAAAAAA"]
  */
 class Solution {
-    static final int L = 10;
+    static final int L = 10; //查找的固定长度
     Map<Character, Integer> bin = new HashMap<Character, Integer>() {{
         put('A', 0);
         put('C', 1);
@@ -32,13 +32,17 @@ class Solution {
             return ans;
         }
         int x = 0;
+        // 计算字符串前L-1个字符的二进制值，每两位二进制数表示一个字母
         for (int i === 0; i < L - 1; ++i) {
             x = (x << 2) | bin.get(s.charAt(i));
         }
         Map<Integer, Integer> cnt = new HashMap<Integer, Integer>();
         for (int i = 0; i <= n - L; ++i) {
+           // 更新二进制值，左移2位并加入新的字符，同时清除高位无效数据
             x = ({x << 2} | bin.get(s.charAt(i + L - 1))) & ((1 << (L * 2)) - 1);
+           // 更新当前序列的出现次数
             cnt.put(x, cnt.getOrDefault(x, 0) + 1);
+           // 如果该序列的出现次数恰好为2，加入结果列表（等于2表示避免重复添加）
             if (cnt.get(x) == 2) {
                 ans.add(s.substring(i, i + L));
             }
